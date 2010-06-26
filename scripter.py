@@ -39,7 +39,7 @@ os.system("wget %s" % original_wav)
 
 #get the right names
 original_wav = original_wav.split("/")[-1]
-original_gif = original_gif.split("/")[-1
+original_gif = original_gif.split("/")[-1]
 
 os.system("sox %s %s" % (original_wav, temp_aif))
 ## compute audio duration in seconds
