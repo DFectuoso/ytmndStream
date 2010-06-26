@@ -22,18 +22,24 @@ if len(sys.argv) is not 2:
   print("expecting one ytmnd name, got "+str(sys.argv))
   sys.exit(-1)
 
+# Get the url of the sound and foreground
 ytmnd_name = sys.argv[1]
 ytmnd_html = urllib2.urlopen("http://" + ytmnd_name + ".ytmnd.com").read()
 expr = r"ytmnd.site_id = (\d+);"
 ytmnd_id = re.search(expr,ytmnd_html).group(1)
 ytmnd_info = simplejson.load(urllib2.urlopen("http://" + ytmnd_name + ".ytmnd.com/info/" + ytmnd_id + "/json"))
 
+#Assign full url names for the sound and foreground
 original_gif = ytmnd_info['site']['sound']['url']
 original_wav = ytmnd_info['site']['foreground']['url']
+
+#download files
 os.system("wget %s" % original_gif)
 os.system("wget %s" % original_wav)
 
-sys.exit(-1)
+#get the right names
+original_wav = original_wav.split("/")[-1]
+original_gif = original_gif.split("/")[-1
 
 os.system("sox %s %s" % (original_wav, temp_aif))
 ## compute audio duration in seconds
