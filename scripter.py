@@ -41,9 +41,7 @@ os.system("wget %s" % original_wav)
 original_wav = original_wav.split("/")[-1]
 original_gif = original_gif.split("/")[-1]
 
-os.system("sox %s %s" % (original_wav, temp_aif))
 ## compute audio duration in seconds
-
 temp_aif = PREFIX + ".aif"
 os.system("sox %s %s" % (original_wav, temp_aif))
 aif = aifc.open(temp_aif, 'r')
