@@ -30,8 +30,8 @@ ytmnd_id = re.search(expr,ytmnd_html).group(1)
 ytmnd_info = simplejson.load(urllib2.urlopen("http://" + ytmnd_name + ".ytmnd.com/info/" + ytmnd_id + "/json"))
 
 #Assign full url names for the sound and foreground
-original_gif = ytmnd_info['site']['sound']['url']
-original_wav = ytmnd_info['site']['foreground']['url']
+original_gif = ytmnd_info['site']['foreground']['url']
+original_wav = ytmnd_info['site']['sound']['url']
 
 #download files
 os.system("wget %s" % original_gif)
