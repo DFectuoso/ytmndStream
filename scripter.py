@@ -4,6 +4,8 @@ import sys
 import aifc
 import os
 import re
+import urllib2
+import simplejson
 
 ## parameters
 
@@ -16,13 +18,24 @@ os.mkdir(SCRATCH_DIR)
 
 ## command-line arguments
 
-if len(sys.argv) is not 3:
-  print("expecting two args, got "+str(sys.argv))
+if len(sys.argv) is not 2:
+  print("expecting one ytmnd name, got "+str(sys.argv))
   sys.exit(-1)
 
-original_gif = sys.argv[1]
-original_wav = sys.argv[2]
+ytmnd_name = sys.argv[1]
+ytmnd_html = urllib2.urlopen("http://" + ytmnd_name + ".ytmnd.com").read()
+expr = r"ytmnd.site_id = (\d+);"
+ytmnd_id = re.search(expr,ytmnd_html).group(1)
+ytmnd_info = simplejson.load(urllib2.urlopen("http://" + ytmnd_name + ".ytmnd.com/info/" + ytmnd_id + "/json"))
 
+original_gif = ytmnd_info['site']['sound']['url']
+original_wav = ytmnd_info['site']['foreground']['url']
+os.system("wget %s" % original_gif)
+os.system("wget %s" % original_wav)
+
+sys.exit(-1)
+
+os.system("sox %s %s" % (original_wav, temp_aif))
 ## compute audio duration in seconds
 
 temp_aif = PREFIX + ".aif"
