@@ -96,13 +96,13 @@ def magic(name):
         (FPS,
          PREFIX + ".%03d.gif",
          original_wav, ytmnd_name))
+  os.system("ffmpeg2theora %s.mpeg", ytmnd_name)
 
   ## cleanup
   os.system("rm %s" % original_gif)
   os.system("rm %s" % original_wav)
   os.system("rm %s.*" % PREFIX)
   os.rmdir(SCRATCH_DIR)
-  sys.exit(1)
 
 urls = (
   '/get/(.+)', 'index'
@@ -110,8 +110,8 @@ urls = (
 
 class index:
   def GET(self,foo):
-    if os.path.isfile("static/" + foo + ".mpeg"):
-      return "<html><body>AWESOME!!!!<video src='/static/" + foo + ".mpeg'/></body></html>"
+    if os.path.isfile("static/" + foo + ".ogv"):
+      return "<html><body>AWESOME!!!!<video src='/static/" + foo + ".ogv'/></body></html>"
     else:
       try:
         pid = os.fork() 
