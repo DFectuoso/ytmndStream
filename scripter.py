@@ -116,9 +116,9 @@ class index:
       try:
         pid = os.fork() 
         if not pid:
-          return "I will be getting:" + foo
-        else:
           magic(foo)
+        else:
+          return "I will be getting:" + foo
       except OSError, e: 
         print >>sys.stderr, "fork #2 failed: %d (%s)" % (e.errno, e.strerror) 
         sys.exit(1) 
