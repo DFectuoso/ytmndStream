@@ -101,5 +101,7 @@ os.system("ffmpeg -r %d -i %s -i %s -y out.mpeg" %
 
 ## cleanup
 
+os.system("rm %s" % original_gif)
+os.system("rm %s" % original_wav)
 os.system("rm %s.*" % PREFIX)
 os.rmdir(SCRATCH_DIR)
