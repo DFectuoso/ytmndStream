@@ -92,7 +92,7 @@ def magic(name):
     frame_counter += 1
     timecode += video_frame_step
   ## transcodinG
-  os.system("ffmpeg -r %d -i %s -i %s -y %s.mpeg" %
+  os.system("ffmpeg -r %d -i %s -i %s -y static/%s.mpeg" %
         (FPS,
          PREFIX + ".%03d.gif",
          original_wav, ytmnd_name))
@@ -105,13 +105,13 @@ def magic(name):
   sys.exit(1)
 
 urls = (
-  '/foo/(.+)', 'index'
+  '/get/(.+)', 'index'
 )
 
 class index:
   def GET(self,foo):
     if os.path.isfile(foo + ".mpeg"):
-      return "Exist"
+      return "<html><body>AWESOME!!!!<video src='/static" + foo + ".mpeg'/></body></html>"
     else:
       try:
         pid = os.fork() 
