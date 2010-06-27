@@ -105,7 +105,7 @@ def magic(name):
   sys.exit(1)
 
 urls = (
-  '/(.+)', 'index'
+  '/foo/(.+)', 'index'
 )
 
 class index:
