@@ -111,7 +111,7 @@ urls = (
 class index:
   def GET(self,foo):
     if os.path.isfile(foo + ".mpeg"):
-      return "<html><body>AWESOME!!!!<video src='/static" + foo + ".mpeg'/></body></html>"
+      return "<html><body>AWESOME!!!!<video src='/static/" + foo + ".mpeg'/></body></html>"
     else:
       try:
         pid = os.fork() 
