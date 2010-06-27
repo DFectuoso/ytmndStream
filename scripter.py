@@ -96,7 +96,7 @@ def magic(name):
         (FPS,
          PREFIX + ".%03d.gif",
          original_wav, ytmnd_name))
-  os.system("ffmpeg2theora %s.mpeg" % ytmnd_name)
+  os.system("ffmpeg2theora static/%s.mpeg" % ytmnd_name)
 
   ## cleanup
   os.system("rm %s" % original_gif)
