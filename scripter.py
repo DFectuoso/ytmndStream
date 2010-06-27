@@ -115,7 +115,7 @@ class index:
     else:
       try:
         pid = os.fork() 
-        if pid not 0:
+        if not pid:
           return "I will be getting:" + foo
         else:
           magic(foo)
