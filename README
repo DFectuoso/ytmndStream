@@ -1,12 +1,7 @@
 Make a web.py app where /stream/STRING checks to see if we have it already, if we don't we send AMQP to someone else to get it.
 
-//Step 1: Set up web.py
-Step 2: Set up DB on web.py
-Step 3: Make /stream/String query the db and send the AMQP message
-Step 4: Make other program that gets the message
-Step 5: Parse for resources
-Step 6: Wget resources
-Step 7: Run scripter.py
-Step 8: RM resources?
-Step 9: Stream what we have
-Step 10: Party at the disco
+TODO:
+-> Add stuff to the db
+-> Make a homepage
+-> Make the magic function work with rabitMQ, maybe in another file?
+
