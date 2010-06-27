@@ -102,6 +102,7 @@ def magic(name):
   os.system("rm %s" % original_wav)
   os.system("rm %s.*" % PREFIX)
   os.rmdir(SCRATCH_DIR)
+  sys.exit(1)
 
 urls = (
   '/(.+)', 'index'
@@ -112,8 +113,16 @@ class index:
     if os.path.isfile(foo + ".mpeg"):
       return "Exist"
     else:
-      magic(foo)
-      return "I will be getting:" + foo
+      try:
+        pid = os.fork() 
+        if pid != 0:
+          magic(foo)
+        else:
+          return "I will be getting:" + foo
+      except OSError, e: 
+        print >>sys.stderr, "fork #2 failed: %d (%s)" % (e.errno, e.strerror) 
+        sys.exit(1) 
+
 
 app = web.application(urls, globals())
 
