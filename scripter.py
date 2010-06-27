@@ -10,7 +10,8 @@ import simplejson
 import web
 import random
              
-## parameters
+db = web.database(dbn='postgres', host="localhost", user='yt', pw='pwd123', db='ytmndstream')
+render = web.template.render('templates/')
 
 
 def magic(name):
