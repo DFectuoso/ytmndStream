@@ -3,6 +3,7 @@
 import sys
 import aifc
 import os
+import os.path
 import re
 import urllib2
 import simplejson
@@ -108,7 +109,7 @@ urls = (
 
 class index:
   def GET(self,foo):
-    if os.path.exist(foo + ".mpeg"):
+    if os.path.isfile(foo + ".mpeg"):
       return "Exist"
     else:
       magic(foo)
