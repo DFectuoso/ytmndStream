@@ -110,7 +110,7 @@ urls = (
 
 class index:
   def GET(self,foo):
-    if os.path.isfile(foo + ".mpeg"):
+    if os.path.isfile("static/" + foo + ".mpeg"):
       return "<html><body>AWESOME!!!!<video src='/static/" + foo + ".mpeg'/></body></html>"
     else:
       try:
