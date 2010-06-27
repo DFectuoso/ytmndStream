@@ -91,10 +91,10 @@ def magic(name):
     frame_counter += 1
     timecode += video_frame_step
   ## transcodinG
-  os.system("ffmpeg -r %d -i %s -i %s -y out.mpeg" %
+  os.system("ffmpeg -r %d -i %s -i %s -y %s.mpeg" %
         (FPS,
          PREFIX + ".%03d.gif",
-         original_wav))
+         original_wav, ytmnd_name))
 
   ## cleanup
   os.system("rm %s" % original_gif)
@@ -108,8 +108,11 @@ urls = (
 
 class index:
   def GET(self,foo):
-    magic(foo)
-    return "lets do it" + foo
+    if os.path.exist(foo + ".mpeg"):
+      return "Exist"
+    else:
+      magic(foo)
+      return "I will be getting:" + foo
 
 app = web.application(urls, globals())
 
