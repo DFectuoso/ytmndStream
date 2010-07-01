@@ -112,14 +112,15 @@ urls = (
 class index:
   def GET(self,foo):
     if os.path.isfile("static/" + foo + ".ogv"):
-      return "<html><body>AWESOME!!!!<video src='/static/" + foo + ".ogv'/></body></html>"
+      video = "/static/" + foo + ".ogv"
+      return render.video(video)
     else:
       try:
         pid = os.fork() 
         if not pid:
           magic(foo)
         else:
-          return "I will be getting:" + foo
+          return render.get(foo)
       except OSError, e: 
         print >>sys.stderr, "fork #2 failed: %d (%s)" % (e.errno, e.strerror) 
         sys.exit(1) 
