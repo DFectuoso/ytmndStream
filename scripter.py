@@ -104,6 +104,7 @@ def magic(name):
   os.system("rm %s" % original_wav)
   os.system("rm %s.*" % PREFIX)
   os.rmdir(SCRATCH_DIR)
+  db.insert('videos', id=ytmnd_id, name=ytmnd_name)
 
 urls = (
   '/get/(.+)', 'index'
