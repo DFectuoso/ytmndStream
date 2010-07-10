@@ -112,7 +112,9 @@ urls = (
 
 class index:
   def GET(self,foo):
-    if os.path.isfile("static/" + foo + ".ogv"):
+    query = db.select('videos', dict(name=foo), where="name = $name", _test=False)
+    if len(query) > 0:
+    # old if: os.path.isfile("static/" + foo + ".ogv"):
       video = "/static/" + foo + ".ogv"
       return render.video(video)
     else:
